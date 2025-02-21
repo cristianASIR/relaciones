@@ -3,10 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProfesorModule } from './profesor/profesor.module';
-import { AlumnosModule } from './alumnos/alumnos.module';
-import { PracticaModule } from './practica/practica.module';
-import { ExamenteoricoModule } from './examenteorico/examenteorico.module';
+import { AlumnoModule } from './_entidades/alumno/alumno.module';
+import { PracticaModule } from './_entidades/practica/practica.module';
+import { ProfesorModule } from './_entidades/profesor/profesor.module';
+import { ExamenteoricoModule } from './_entidades/examenteorico/examenteorico.module';
+import { RealizaModule } from './_entidades/realiza/realiza.module';
+import { HaceModule } from './_entidades/hace/hace.module';
+import { DiseñaModule } from './_entidades/diseña/diseña.module';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true,}),
@@ -20,12 +23,15 @@ import { ExamenteoricoModule } from './examenteorico/examenteorico.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       //Se utiliza la sincronización de los datos cuando estamos en desarrollo
       //Si esta en producción se mantiene desactivada para no provocar conflicto
-      synchronize: true
+      synchronize: false
     }),
-    ProfesorModule,
-    AlumnosModule,
     PracticaModule,
-    ExamenteoricoModule
+    AlumnoModule,
+    ProfesorModule,
+    ExamenteoricoModule,
+    RealizaModule,
+    HaceModule,
+    DiseñaModule
   ],
   controllers: [AppController],
   providers: [AppService],
