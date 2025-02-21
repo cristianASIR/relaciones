@@ -14,6 +14,7 @@ import { DiseñaModule } from './_entidades/diseña/diseña.module';
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true,}),
     TypeOrmModule.forRoot({
+      //Utilizo solo 1 base de datos, no hay obligación de espeficicar a cual tiene que insertar los datos si esta está activa
       type: 'mysql',
       host: process.env.HOST,
       port: 3306,
