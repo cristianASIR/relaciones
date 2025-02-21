@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePracticaDto } from './dto/create-practica.dto';
 import { UpdatePracticaDto } from './dto/update-practica.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Practica } from './entities/practica.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PracticaService {
-  create(createPracticaDto: CreatePracticaDto) {
-    return 'This action adds a new practica';
+  constructor(
+    @InjectRepository(Practica)
+    private practicaRepository: Repository<Practica>,
+  ) { }
+  create(createCategoriaDto: CreatePracticaDto) {
+    return this.practicaRepository.save(createCategoriaDto);
   }
-
   findAll() {
-    return `This action returns all practica`;
+    return this.practicaRepository.find();
   }
-
   findOne(id: number) {
-    return `This action returns a #${id} practica`;
+    return this.practicaRepository.findOne({ where: { id: id } });
   }
-
-  update(id: number, updatePracticaDto: UpdatePracticaDto) {
-    return `This action updates a #${id} practica`;
+  update(id: number, updateCategoriaDto: UpdatePracticaDto) {
+    return this.practicaRepository.update(id, updateCategoriaDto);
   }
-
   remove(id: number) {
-    return `This action removes a #${id} practica`;
+    return this.practicaRepository.delete(id);
   }
 }

@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRealizaDto } from './dto/create-realiza.dto';
 import { UpdateRealizaDto } from './dto/update-realiza.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Realiza } from './entities/realiza.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RealizaService {
-  create(createRealizaDto: CreateRealizaDto) {
-    return 'This action adds a new realiza';
+  constructor(
+    @InjectRepository(Realiza)
+    private realizaRepository: Repository<Realiza>,
+  ) { }
+  create(createCategoriaDto: CreateRealizaDto) {
+    return this.realizaRepository.save(createCategoriaDto);
   }
-
   findAll() {
-    return `This action returns all realiza`;
+    return this.realizaRepository.find();
   }
-
   findOne(id: number) {
-    return `This action returns a #${id} realiza`;
+    return this.realizaRepository.findOne({ where: { idAlumno: id } });
   }
-
-  update(id: number, updateRealizaDto: UpdateRealizaDto) {
-    return `This action updates a #${id} realiza`;
+  update(id: number, updateCategoriaDto: UpdateRealizaDto) {
+    return this.realizaRepository.update(id, updateCategoriaDto);
   }
-
   remove(id: number) {
-    return `This action removes a #${id} realiza`;
+    return this.realizaRepository.delete(id);
   }
 }

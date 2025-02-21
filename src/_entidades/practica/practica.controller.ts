@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { PracticaService } from './practica.service';
 import { CreatePracticaDto } from './dto/create-practica.dto';
 import { UpdatePracticaDto } from './dto/update-practica.dto';
 
 @Controller('practica')
 export class PracticaController {
-  constructor(private readonly practicaService: PracticaService) {}
+  constructor(private readonly practicaService: PracticaService) { }
 
   @Post()
   create(@Body() createPracticaDto: CreatePracticaDto) {
@@ -22,7 +22,7 @@ export class PracticaController {
     return this.practicaService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updatePracticaDto: UpdatePracticaDto) {
     return this.practicaService.update(+id, updatePracticaDto);
   }

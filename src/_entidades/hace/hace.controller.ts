@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { HaceService } from './hace.service';
 import { CreateHaceDto } from './dto/create-hace.dto';
 import { UpdateHaceDto } from './dto/update-hace.dto';
@@ -16,13 +16,12 @@ export class HaceController {
   findAll() {
     return this.haceService.findAll();
   }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.haceService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateHaceDto: UpdateHaceDto) {
     return this.haceService.update(+id, updateHaceDto);
   }

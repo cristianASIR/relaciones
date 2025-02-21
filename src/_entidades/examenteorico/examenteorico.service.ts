@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateExamenteoricoDto } from './dto/create-examenteorico.dto';
 import { UpdateExamenteoricoDto } from './dto/update-examenteorico.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Examenteorico } from './entities/examenteorico.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ExamenteoricoService {
-  create(createExamenteoricoDto: CreateExamenteoricoDto) {
-    return 'This action adds a new examenteorico';
+  constructor(
+    @InjectRepository(Examenteorico)
+    private examenteoricoRepository: Repository<Examenteorico>,
+  ) { }
+  create(createCategoriaDto: CreateExamenteoricoDto) {
+    return this.examenteoricoRepository.save(createCategoriaDto);
   }
-
   findAll() {
-    return `This action returns all examenteorico`;
+    return this.examenteoricoRepository.find();
   }
-
   findOne(id: number) {
-    return `This action returns a #${id} examenteorico`;
+    return this.examenteoricoRepository.findOne({ where: { id: id } });
   }
-
-  update(id: number, updateExamenteoricoDto: UpdateExamenteoricoDto) {
-    return `This action updates a #${id} examenteorico`;
+  update(id: number, updateCategoriaDto: UpdateExamenteoricoDto) {
+    return this.examenteoricoRepository.update(id, updateCategoriaDto);
   }
-
   remove(id: number) {
-    return `This action removes a #${id} examenteorico`;
+    return this.examenteoricoRepository.delete(id);
   }
 }
