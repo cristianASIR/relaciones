@@ -12,13 +12,11 @@ export class Diseña {
     fecha: Date
 
     //Tabla entre Practica y Profesor
-    @ManyToOne(() => Practica, practica => practica.diseña)
+    @ManyToOne(() => Practica, practica => practica.diseños)
     @JoinColumn({ name: 'idPractica'})
     practica: Practica;
-    @ManyToOne(() => Profesor, profesor => profesor.diseña)
+    @ManyToOne(() => Profesor, profesor => profesor.diseños)
     @JoinColumn({ name: 'idProfesor'})
     profesor: Profesor;
-    @ManyToOne(() => Profesor, profesor => profesor.diseña)
-    profesordiseñaexamenteorico: Profesor[];
 
 }

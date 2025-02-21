@@ -11,8 +11,8 @@ export class RealizaService {
     @InjectRepository(Realiza)
     private realizaRepository: Repository<Realiza>,
   ) { }
-  create(createCategoriaDto: CreateRealizaDto) {
-    return this.realizaRepository.save(createCategoriaDto);
+  create(createRealizaDto: CreateRealizaDto) {
+    return this.realizaRepository.save(createRealizaDto);
   }
   findAll() {
     return this.realizaRepository.find();
@@ -20,8 +20,8 @@ export class RealizaService {
   findOne(id: number) {
     return this.realizaRepository.findOne({ where: { idAlumno: id } });
   }
-  update(id: number, updateCategoriaDto: UpdateRealizaDto) {
-    return this.realizaRepository.update(id, updateCategoriaDto);
+  update(id: number, updateRealizaDto: UpdateRealizaDto) {
+    return this.realizaRepository.update(id, updateRealizaDto);
   }
   remove(id: number) {
     return this.realizaRepository.delete(id);

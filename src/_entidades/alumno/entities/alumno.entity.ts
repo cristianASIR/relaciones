@@ -19,9 +19,9 @@ export class Alumno {
 
     //Relaciones N:N entre Alumno con Practica y ExamenTeorico
     @OneToMany(() => Realiza, re => re.idAlumno)
-    alumnorealizapractica: Realiza[];
+    hecho: Realiza[];
     @OneToMany(() => Hace, ha => ha.idAlumno)
-    alumnohaceexamenteorico: Hace[];
+    examenes: Hace[];
 
     //ChatGPT
     // @OneToMany(() => AlumnoRealizaPractica, (realiza) => realiza.alumno)

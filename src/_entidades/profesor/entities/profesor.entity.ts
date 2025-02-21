@@ -1,4 +1,5 @@
 import { Diseña } from "src/_entidades/diseña/entities/diseña.entity";
+import { Examenteorico } from "src/_entidades/examenteorico/entities/examenteorico.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -17,7 +18,7 @@ export class Profesor {
 
     //Relaciones N:N entre Profesor y Practica y 1:N con ExamenTeorico
     @OneToMany(() => Diseña, diseña => diseña.profesor)
-    diseña: Diseña[];
-    @OneToMany(() => Diseña, diseña => diseña.idProfesor)
-    profesordiseñaexamenteorico: Diseña[];
+    diseños: Diseña[];
+    @OneToMany(() => Examenteorico, et => et.pro)
+    ets: Examenteorico[];
 }

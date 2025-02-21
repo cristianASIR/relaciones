@@ -11,10 +11,10 @@ export class Hace {
     @Column()
     nota: number
 
-    @ManyToOne(() => Alumno, al => al.alumnohaceexamenteorico)
+    @ManyToOne(() => Alumno, al => al.examenes)
     @JoinColumn({ name: 'idAlumno' })
     al: Alumno;
-    @ManyToOne(() => Examenteorico, et => et.alumnohaceexamenteorico)
-    @JoinColumn({ name: 'idAlumno' })
+    @ManyToOne(() => Examenteorico, et => et.realizaciones)
+    @JoinColumn({ name: 'idExamenTeorico' })
     et: Examenteorico;
 }

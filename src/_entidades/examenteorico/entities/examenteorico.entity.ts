@@ -1,6 +1,7 @@
 import { Diseña } from "src/_entidades/diseña/entities/diseña.entity";
 import { Hace } from "src/_entidades/hace/entities/hace.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Profesor } from "src/_entidades/profesor/entities/profesor.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Examenteorico {
@@ -15,9 +16,10 @@ export class Examenteorico {
 
     //Relacion N:N entre examenteorico y alumno y 1:N con profesor
     @OneToMany(() => Hace, ha => ha.idExamenTeorico)
-    alumnohaceexamenteorico: Hace[];
-    @ManyToOne(() => Diseña, diseña => diseña.profesordiseñaexamenteorico)
-    diseña: Diseña[];
+    realizaciones: Hace[];
+    @ManyToOne(() => Profesor, pro => pro.ets)
+    @JoinColumn({ name: 'idProfesor'})
+    pro: Profesor;
 
     //ChatGPT
     // @ManyToOne(() => Profesor, (profesor) => profesor.examenesTeorico)
