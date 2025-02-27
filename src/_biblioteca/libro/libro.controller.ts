@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { LibroService } from './libro.service';
 import { CreateLibroDto } from './dto/create-libro.dto';
 import { UpdateLibroDto } from './dto/update-libro.dto';
 
 @Controller('libro')
 export class LibroController {
-  constructor(private readonly libroService: LibroService) {}
+  constructor(private readonly libroService: LibroService) { }
 
   @Post()
   create(@Body() createLibroDto: CreateLibroDto) {
@@ -22,7 +22,7 @@ export class LibroController {
     return this.libroService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateLibroDto: UpdateLibroDto) {
     return this.libroService.update(+id, updateLibroDto);
   }

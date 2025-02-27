@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { AutorService } from './autor.service';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { CreateAutorDto } from './dto/create-autor.dto';
 import { UpdateAutorDto } from './dto/update-autor.dto';
+import { AutorService } from './autor.service';
 
 @Controller('autor')
 export class AutorController {
-  constructor(private readonly autorService: AutorService) {}
+  constructor(private readonly autorService: AutorService) { }
 
   @Post()
   create(@Body() createAutorDto: CreateAutorDto) {
@@ -22,7 +22,7 @@ export class AutorController {
     return this.autorService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateAutorDto: UpdateAutorDto) {
     return this.autorService.update(+id, updateAutorDto);
   }
