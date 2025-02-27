@@ -10,6 +10,8 @@ import { ExamenteoricoModule } from './_entidades/examenteorico/examenteorico.mo
 import { RealizaModule } from './_entidades/realiza/realiza.module';
 import { HaceModule } from './_entidades/hace/hace.module';
 import { DiseñaModule } from './_entidades/diseña/diseña.module';
+import { AutorModule } from './_biblioteca/autor/autor.module';
+import { LibroModule } from './_biblioteca/libro/libro.module';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true,}),
@@ -32,7 +34,9 @@ import { DiseñaModule } from './_entidades/diseña/diseña.module';
     ExamenteoricoModule,
     RealizaModule,
     HaceModule,
-    DiseñaModule
+    DiseñaModule,
+    AutorModule,
+    LibroModule
   ],
   controllers: [AppController],
   providers: [AppService],
