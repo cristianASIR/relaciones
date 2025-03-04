@@ -12,6 +12,11 @@ import { HaceModule } from './_entidades/hace/hace.module';
 import { DiseñaModule } from './_entidades/diseña/diseña.module';
 import { AutorModule } from './_biblioteca/autor/autor.module';
 import { LibroModule } from './_biblioteca/libro/libro.module';
+import { AuthModule } from './_biblioteca/auth/auth.module';
+import { AuthService } from './_biblioteca/auth/auth.service';
+import { LocalStrategy } from './_biblioteca/auth/local-strategy/local-strategy';
+import { UsuarioModule } from './_biblioteca/user/user.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true,}),
@@ -36,9 +41,12 @@ import { LibroModule } from './_biblioteca/libro/libro.module';
     HaceModule,
     DiseñaModule,
     AutorModule,
-    LibroModule
+    LibroModule,
+    AuthModule,
+    UsuarioModule,
+    JwtModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService, LocalStrategy],
 })
 export class AppModule {}
